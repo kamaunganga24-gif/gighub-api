@@ -32,21 +32,90 @@ gigs_db = [
         "status": "Open",
         "client_name": "Peter Kamau"
     },
-    # ... include the rest of your 9 gigs here
+    {
+        "id": 3,
+        "title": "SEO Optimization for Blog",
+        "description": "Improve search engine ranking for a lifestyle blog using keyword research and backlinks.",
+        "category": "Writing",
+        "budget": 8000.0,
+        "currency": "KES",
+        "status": "In Progress",
+        "client_name": "Mary Wanjiru"
+    },
+    {
+        "id": 4,
+        "title": "Mobile App Bug Fixes",
+        "description": "Fix critical bugs in an Android app and improve performance.",
+        "category": "Development",
+        "budget": 20000.0,
+        "currency": "KES",
+        "status": "Open",
+        "client_name": "David Otieno"
+    },
+    {
+        "id": 5,
+        "title": "Social Media Campaign",
+        "description": "Run a 2-week campaign on Instagram and Facebook to promote a new product.",
+        "category": "Design",
+        "budget": 12000.0,
+        "currency": "KES",
+        "status": "Closed",
+        "client_name": "Lucy Mwangi"
+    },
+    {
+        "id": 6,
+        "title": "Database Migration",
+        "description": "Migrate legacy MySQL database to PostgreSQL with minimal downtime.",
+        "category": "Development",
+        "budget": 30000.0,
+        "currency": "KES",
+        "status": "Open",
+        "client_name": "Samuel Kariuki"
+    },
+    {
+        "id": 7,
+        "title": "Content Writing for Website",
+        "description": "Write 10 SEO-friendly articles for a corporate website.",
+        "category": "Writing",
+        "budget": 10000.0,
+        "currency": "KES",
+        "status": "Open",
+        "client_name": "Grace Njeri"
+    },
+    {
+        "id": 8,
+        "title": "UI/UX Review",
+        "description": "Conduct a usability review of an e-commerce platform and suggest improvements.",
+        "category": "Design",
+        "budget": 15000.0,
+        "currency": "KES",
+        "status": "In Progress",
+        "client_name": "Brian Mwangi"
+    },
+    {
+        "id": 9,
+        "title": "API Integration",
+        "description": "Integrate a payment gateway API into an existing Django application.",
+        "category": "Development",
+        "budget": 25000.0,
+        "currency": "KES",
+        "status": "Open",
+        "client_name": "Alice Wambui"
+    }
 ]
 
 # Model for creating a new gig
 class GigCreate(BaseModel):
     title: str = Field(min_length=5, max_length=100)
     description: str = Field(min_length=20, max_length=500)
-    category: str = Field(..., pattern="^(Development|Design|Writing)$")  # corrected
+    category: str = Field(..., pattern="^(Development|Design|Writing)$")
     budget: float = Field(gt=0)
     client_name: str = Field(min_length=2, max_length=50)
 
 # Model for updating a gig
 class GigUpdate(BaseModel):
     budget: Optional[float] = Field(None, gt=0)
-    status: Optional[str] = Field(None, pattern="^(Open|In Progress|Closed)$")  # corrected
+    status: Optional[str] = Field(None, pattern="^(Open|In Progress|Closed)$")
 
 # 1. List all gigs (with optional filters)
 @app.get("/gigs")
